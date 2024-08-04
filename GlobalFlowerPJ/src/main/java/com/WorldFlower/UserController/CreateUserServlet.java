@@ -29,7 +29,7 @@ public class CreateUserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		UserDAO userDao = new UserDAO();
-		System.out.println(userDao.SelectUserAll().get(0).getUserRegdate());
+		System.out.println(userDao.selectUserAll().get(0).getUserRegdate());
 		
 	}
 

@@ -12,21 +12,18 @@ public class DBConnection {
     private DataSource dataSource;
     private Connection connection;
 
-
-
-    private DBConnection() throws Exception {
+    private DBConnection() throws NamingException, SQLException {
         try {
             Context initContext = new InitialContext();
             Context envContext = (Context) initContext.lookup("java:/comp/env");
             this.dataSource = (DataSource) envContext.lookup("jdbc/JSPProject");
         } catch (NamingException e) {
             e.printStackTrace();
-            System.out.println("DB 연결 실패: " + e.getMessage());
+            throw new NamingException("DB 연결 실패: " + e.getMessage());
         }
-        System.out.println("db 연결 성공");
     }
 
-    public static DBConnection getInstance() throws Exception {
+    public static DBConnection getInstance() throws NamingException, SQLException {
         if (instance == null) {
             instance = new DBConnection();
         }
